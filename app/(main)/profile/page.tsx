@@ -1,5 +1,5 @@
-const DeveloperProfile = () => {
-  return <div>DeveloperProfile</div>;
+const ProfileDetails = () => {
+  return <div>ProfileDetails</div>;
 };
 
-export default DeveloperProfile;
+export default ProfileDetails;

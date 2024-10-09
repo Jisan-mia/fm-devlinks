@@ -3,7 +3,7 @@ import { PropsWithChildren } from "react";
 
 const layout = ({ children }: PropsWithChildren) => {
   return (
-    <main>
+    <main className="container">
       <Navbar />
       {children}
     </main>

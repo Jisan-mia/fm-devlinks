@@ -3,14 +3,14 @@ import Link from "next/link";
 
 const Navbar = () => {
   return (
-    <header className="container">
-      <nav className="h-full w-full bg-background border border-border rounded-md flex items-center">
+    <header className="h-24 flex items-center">
+      <nav className="h-16 w-full bg-background border border-border rounded-md flex items-center">
         <div className="grid items-center w-full px-1.5 justify-between">
           <div>
-            <div className="h-[35px] w-max">
+            <div className="h-[30px] w-max">
               <Link href={"/"} className="h-full w-full">
                 <Image
-                  src={"/ver"}
+                  src={"/vercel.svg"}
                   alt="Kotha App logo image"
                   width={2000}
                   height={419}

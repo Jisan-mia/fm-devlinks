@@ -28,7 +28,7 @@
   }
 
   body {
-    @apply bg-[#fbfbfb] text-foreground font-poppins;
+    @apply bg-[#FAFAFA] text-foreground font-poppins;
   }
 
   h1,
