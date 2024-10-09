@@ -3,8 +3,8 @@ import Link from "next/link";
 
 const Navbar = () => {
   return (
-    <header className="h-24 flex items-center">
-      <nav className="h-16 w-full bg-background border border-border rounded-md flex items-center">
+    <header className="main-layout__navbar h-24 flex items-center">
+      <nav className="h-16 w-full bg-background rounded-md flex items-center">
         <div className="grid items-center w-full px-1.5 justify-between">
           <div>
             <div className="h-[30px] w-max">
