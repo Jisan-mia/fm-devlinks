@@ -1,17 +1,10 @@
 "use client";
 import { cn } from "@/lib/utils";
-import { CircleUserRound, LinkIcon, LucideIcon, Users } from "lucide-react";
+import { NavItemType } from "@/types/navitem";
+import { CircleUserRound, LinkIcon, Users } from "lucide-react";
 import Link from "next/link";
+import { useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
-
-type NavItemType = {
-  label: string;
-  link: string;
-  query: {
-    [key: string]: string;
-  };
-  icon: LucideIcon;
-};
 
 const navItems: NavItemType[] = [
   {
@@ -39,10 +32,22 @@ const navItems: NavItemType[] = [
 ];
 
 const NavbarMenuItems = () => {
-  const [selectedNavItem, setSelectedNavItem] = useState(navItems[0].label);
+  const searchParam = useSearchParams();
+  const tabQueryString = searchParam.get("tab");
+  const [selectedNavItem, setSelectedNavItem] = useState("");
   useEffect(() => {
+    if (tabQueryString) {
+      const findNavItem = navItems.find(
+        (item) => item?.query?.tab === tabQueryString
+      );
+      if (findNavItem) {
+        setSelectedNavItem(findNavItem.label);
+      }
+    } else {
+      setSelectedNavItem(navItems[0].label);
+    }
     console.log({ selectedNavItem });
-  }, [selectedNavItem]);
+  }, [tabQueryString, selectedNavItem]);
 
   return (
     <ul className="flex items-center justify-center ">
@@ -51,9 +56,6 @@ const NavbarMenuItems = () => {
         return (
           <li key={item.label}>
             <Link
-              onClick={() => {
-                setSelectedNavItem(item.label);
-              }}
               className={cn(
                 "flex items-center gap-2 px-5 py-3  font-semibold text-sm hover:text-primary hover:bg-[#EFECFF] rounded-lg transition-all text-[#747474] ",
                 {
