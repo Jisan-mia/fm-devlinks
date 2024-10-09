@@ -42,6 +42,9 @@ const config: Config = {
         "mobile-md": {
           max: "768px",
         },
+        "mobile-sm": {
+          max: "448px",
+        },
         tablet: {
           max: "1024px",
         },
