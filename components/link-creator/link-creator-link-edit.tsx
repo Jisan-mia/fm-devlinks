@@ -3,7 +3,7 @@ import LinkInputs from "./link-inputs";
 
 const LinkCreatorLinkEdit = () => {
   return (
-    <div className="px-5 py-5 flex flex-col gap-4">
+    <div className="px-5 py-5 flex flex-col gap-4 h-full custom-scrollbar overflow-y-auto max-h-[calc(100vh-122px)]">
       <div className="flex flex-col gap-2">
         <h1 className="text-xl font-semibold">Customize your links</h1>
         <p className="text-foreground/75 text-base font-medium">
@@ -21,7 +21,7 @@ const LinkCreatorLinkEdit = () => {
 
       <LinkInputs />
 
-      <div className="flex justify-end mt-4 border-t border-border pt-4">
+      <div className="flex justify-end mt-4 border-t border-border pt-4 sticky bottom-0 bg-white">
         <button className="inline-flex items-center justify-center w-full px-7 py-3 font-semibold leading-6 text-primary-foreground bg-primary border border-transparent rounded-lg md:w-auto hover:bg-primary/90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary cursor-pointer text-sm">
           Save
         </button>
