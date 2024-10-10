@@ -2,8 +2,13 @@ import LinkCreatorLinkEdit from "@/components/link-creator/link-creator-link-edi
 import LinkCreatorPreview from "@/components/link-creator/link-creator-preview";
 import LinkCreatorProfileEdit from "@/components/link-creator/link-creator-profile-edit";
 
-const DeveloperLinksProfile = () => {
+const DeveloperLinksProfile = ({
+  searchParams,
+}: {
+  searchParams: { [key: string]: string | string[] | undefined };
+}) => {
   // shared state
+
   return (
     <>
       <section className="main-layout__left-preview bg-background rounded-xl h-full w-full grid place-items-center">
@@ -11,8 +16,11 @@ const DeveloperLinksProfile = () => {
       </section>
 
       <section className="main-layout__right-editor bg-background rounded-xl h-full w-full">
-        <LinkCreatorProfileEdit />
-        <LinkCreatorLinkEdit />
+        {searchParams?.tab === "profile-edit" ? (
+          <LinkCreatorProfileEdit />
+        ) : (
+          searchParams?.tab === "link-edit" && <LinkCreatorLinkEdit />
+        )}
       </section>
     </>
   );

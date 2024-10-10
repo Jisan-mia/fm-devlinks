@@ -9,7 +9,7 @@ const LinkCreatorPreview = () => {
         {/* inner round */}
         <div className="border border-border rounded-[calc(2rem-1rem)] h-full relative">
           {/* notch */}
-          <div className="absolute top-[-1px] bg-background left-1/2 w-[28%] h-[18px] translate-x-[-50%] border border-border border-t-0  rounded-b-md  "></div>
+          <div className="absolute top-[-2px] bg-background left-1/2 w-[28%] h-[18px] translate-x-[-50%] border border-border border-t-0  rounded-b-md  "></div>
           {/* inner content */}
           <div className="w-full h-full px-4 py-4 flex flex-col gap-6 mt-3.5">
             {/* profile detail */}
