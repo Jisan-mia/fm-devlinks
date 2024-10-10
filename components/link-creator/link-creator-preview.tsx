@@ -6,12 +6,12 @@ const LinkCreatorPreview = () => {
     <div className="w-full h-full grid place-items-center">
       {/* outer round */}
       <div className="w-full h-full border p-4 border-border max-h-[90%] relative max-w-[80%] rounded-[2rem]">
+        {/* notch */}
+        <div className="absolute top-[16px] bg-background left-1/2 w-[28%] h-[18px] translate-x-[-50%] border border-border border-t-0  rounded-b-md  "></div>
         {/* inner round */}
-        <div className="border border-border rounded-[calc(2rem-1rem)] h-full relative">
-          {/* notch */}
-          <div className="absolute top-[-2px] bg-background left-1/2 w-[28%] h-[18px] translate-x-[-50%] border border-border border-t-0  rounded-b-md  "></div>
+        <div className="border border-border rounded-[calc(2rem-1rem)] h-full custom-scrollbar overflow-auto">
           {/* inner content */}
-          <div className="w-full h-full px-4 py-4 flex flex-col gap-6 mt-3.5">
+          <div className="w-full h-full px-4 py-4 pt-8 flex flex-col gap-6 ">
             {/* profile detail */}
             <div className="flex flex-col gap-7 ">
               <div className="flex justify-center">
@@ -55,6 +55,11 @@ const LinkCreatorPreview = () => {
                 </p>
                 <ArrowRight className="font-medium size-4 text-white" />
               </Link>
+              <div className="flex h-[43.99px] justify-between items-center bg-[#eeeeee] rounded-lg text-sm"></div>
+
+              {/* <div className="flex h-[43.99px] justify-between items-center bg-[#eeeeee] rounded-lg text-sm"></div> */}
+
+              {/* <div className="flex h-[43.99px] justify-between items-center bg-[#eeeeee] rounded-lg text-sm"></div> */}
             </div>
           </div>
         </div>

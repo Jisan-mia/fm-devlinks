@@ -108,7 +108,7 @@ const LinkCreatorProfileEdit = () => {
           <input
             value={"Submit"}
             type="submit"
-            className="inline-flex items-center justify-center w-full px-7 py-3 text-base font-bold leading-6 text-primary-foreground bg-primary border border-transparent rounded-lg md:w-auto hover:bg-primary/90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary cursor-pointer"
+            className="inline-flex items-center justify-center w-full px-7 py-3 font-semibold leading-6 text-primary-foreground bg-primary border border-transparent rounded-lg md:w-auto hover:bg-primary/90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary cursor-pointer text-sm"
           />
         </div>
       </form>
