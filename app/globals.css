@@ -111,3 +111,13 @@
 .main-layout__right-editor {
   grid-area: right_editor;
 }
+
+@media (max-width: 768px) {
+  .main-layout {
+    grid-template-areas:
+      "nav nav"
+      "right_editor right_editor"
+    ;
+    grid-template-columns: 1fr 1fr;
+  }
+}

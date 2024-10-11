@@ -31,7 +31,7 @@ const navItems: NavItemType[] = [
   },
 ];
 
-const NavbarMenuItems = () => {
+const NavbarMenuItems = ({ className }: { className?: string }) => {
   const searchParam = useSearchParams();
   const tabQueryString = searchParam.get("tab");
   const [selectedNavItem, setSelectedNavItem] = useState("");
@@ -50,7 +50,7 @@ const NavbarMenuItems = () => {
   }, [tabQueryString, selectedNavItem]);
 
   return (
-    <ul className="flex items-center justify-center ">
+    <ul className={cn("flex items-center justify-center", className)}>
       {navItems.map((item) => {
         const Icon = item.icon;
         return (

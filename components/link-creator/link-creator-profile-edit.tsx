@@ -147,7 +147,15 @@ const LinkCreatorProfileEdit = () => {
           </div>
         </div>
 
-        <div className="flex justify-end mt-4 border-t border-border pt-4">
+        <div className="flex justify-end mt-4 border-t border-border pt-4 mobile-md:hidden">
+          <input
+            value={"Submit"}
+            type="submit"
+            className="inline-flex items-center justify-center w-full px-7 py-3 font-semibold leading-6 text-primary-foreground bg-primary border border-transparent rounded-lg md:w-auto hover:bg-primary/90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary cursor-pointer text-sm"
+          />
+        </div>
+
+        <div className="hidden container mobile-md:flex fixed bottom-[44px] left-0 w-full bg-white items-center justify-around z-50 pr-4 mt-4 border-t border-border pt-4 pb-4 right-0">
           <input
             value={"Submit"}
             type="submit"

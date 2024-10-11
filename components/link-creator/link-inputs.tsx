@@ -45,7 +45,7 @@ const LinkInputs = () => {
   const sortedDevLinks = sortByKeyAsc(devLinkProfile.links, "order");
 
   return (
-    <div className="flex flex-col gap-3.5 pb-[70px]">
+    <div className="flex flex-col gap-3.5">
       {devLinkProfile?.links?.length > 0 ? (
         sortedDevLinks.map((link) => (
           <LinkInputItem key={link.id} link={link} />
