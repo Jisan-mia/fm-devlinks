@@ -9,12 +9,12 @@ const LinkCreatorLinkEdit = () => {
     if (devLinkProfile.links.length === 4) {
       return;
     }
-    console.log(devLinkProfile.links);
 
     const unmatchedPlatformOptions = allPlatformOptions.filter(
       (option) =>
         !devLinkProfile.links.some((link) => link.platform === option.label)
     );
+    // console.log({ unmatchedPlatformOptions });
 
     const firstPlatform = unmatchedPlatformOptions[0];
 

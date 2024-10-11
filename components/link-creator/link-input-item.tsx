@@ -1,6 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 import { LinkItemType } from "@/types/devlinks";
-import { ChangeEvent, PropsWithChildren, useState } from "react";
+import { ChangeEvent, PropsWithChildren, useEffect, useState } from "react";
 
 import { useLinkCreatorContext } from "@/context/link-creator-context";
 import Select, {
@@ -55,12 +55,16 @@ const CustomSelectValue = (
 const LinkInputItem = ({ link }: { link: LinkItemType }) => {
   const { devLinkProfile, setDevLinkProfile } = useLinkCreatorContext();
 
-  const [selectedVal, setSelectedVal] = useState<PlatformSelectOptionType>({
-    value: link.platform.toLowerCase(),
-    label: link.platform,
-    icon: link.platform_logo,
-    platform_color: link.platform_color,
-  });
+  const [selectedVal, setSelectedVal] = useState<PlatformSelectOptionType>();
+
+  useEffect(() => {
+    setSelectedVal({
+      value: link.platform.toLowerCase(),
+      label: link.platform,
+      icon: link.platform_logo,
+      platform_color: link.platform_color,
+    });
+  }, [link]);
 
   const handleChange = (value: PlatformSelectOptionType) => {
     setSelectedVal(value);
