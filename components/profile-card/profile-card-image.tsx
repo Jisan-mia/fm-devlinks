@@ -6,13 +6,12 @@ const ProfileCardImage = () => {
   return (
     <div className="flex justify-center">
       {profile?.profile_picture ? (
-        <div className="h-24 w-24 rounded-full">
+        <div className="h-24 w-24 rounded-full relative ring-4 ring-primary ">
           <Image
             src={profile.profile_picture}
-            width={24}
-            height={24}
+            fill
             alt="Profile Picture"
-            className="w-full h-full object-cover"
+            className="w-full h-full object-cover rounded-full shadow-sm"
             unoptimized
           />
         </div>

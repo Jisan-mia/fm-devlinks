@@ -1,3 +1,5 @@
+"use client";
+
 import LinkCreatorLinkEdit from "@/components/link-creator/link-creator-link-edit";
 import LinkCreatorPreview from "@/components/link-creator/link-creator-preview";
 import LinkCreatorProfileEdit from "@/components/link-creator/link-creator-profile-edit";

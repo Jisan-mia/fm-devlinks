@@ -36,25 +36,12 @@ const ProfileCardLinks = () => {
           </Link>
         ))
       ) : (
-        <p> No links added </p>
+        <>
+          <div className="flex h-[43.99px] justify-between items-center bg-[#eeeeee] rounded-lg text-sm"></div>
+          <div className="flex h-[43.99px] justify-between items-center bg-[#eeeeee] rounded-lg text-sm"></div>
+          <div className="flex h-[43.99px] justify-between items-center bg-[#eeeeee] rounded-lg text-sm"></div>
+        </>
       )}
-
-      {/*
-      <Link
-        href={""}
-        className="flex justify-between items-center px-4 py-3 bg-black rounded-lg text-sm"
-      >
-        <p className="text-white text-sm font-normal flex item-center gap-2">
-          <Github className="text-white size-5" />
-          Github
-        </p>
-        <ArrowRight className="font-medium size-4 text-white" />
-      </Link> */}
-      <div className="flex h-[43.99px] justify-between items-center bg-[#eeeeee] rounded-lg text-sm"></div>
-
-      {/* <div className="flex h-[43.99px] justify-between items-center bg-[#eeeeee] rounded-lg text-sm"></div> */}
-
-      {/* <div className="flex h-[43.99px] justify-between items-center bg-[#eeeeee] rounded-lg text-sm"></div> */}
     </div>
   );
 };

@@ -3,7 +3,7 @@ import { cn } from "@/lib/utils";
 import { DevLinkProfileType } from "@/types/devlinks";
 import ProfileCard from "../profile-card/profile-card";
 
-const exampleProfile: DevLinkProfileType = {
+export const exampleProfile: DevLinkProfileType = {
   first_name: "Jisan",
   last_name: "Mia",
   email: "jisanmia47@gmail.com",

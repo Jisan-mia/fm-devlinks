@@ -5,12 +5,13 @@ const ProfileCardInfo = () => {
   const { profile } = useProfileCardContext();
 
   return (
-    <div className="flex flex-col gap-2">
+    <div className="flex flex-col gap-2 items-center">
       <h2
         className={cn(
-          "h-5 text-xl font-semibold w-[80%] rounded-full text-center bg-[#eeeeee]",
+          "h-[28px] text-xl font-semibold w-[80%] rounded-full text-center bg-[#eeeeee]",
           {
-            "bg-transparent h-auto w-full": profile.first_name,
+            "bg-transparent h-auto w-full":
+              profile.first_name && profile.first_name,
           }
         )}
       >
@@ -18,7 +19,7 @@ const ProfileCardInfo = () => {
       </h2>
       <p
         className={cn(
-          "h-3 text-base font-medium w-[30%] text-center rounded-full bg-[#eeeeee]",
+          "h-[23.99px] text-base font-medium w-[30%] text-center rounded-full bg-[#eeeeee]",
           {
             "bg-transparent h-auto w-full": profile.email,
           }
