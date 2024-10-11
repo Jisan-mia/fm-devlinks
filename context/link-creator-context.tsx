@@ -41,8 +41,17 @@ export const useLinkCreatorContext = () => {
 // }
 
 export const LinkCreatorProvider = ({ children }: PropsWithChildren) => {
-  const [devLinkProfile, setDevLinkProfile] = useState(
-    devLinkProfileInitialState
+  const [devLinkProfile, setDevLinkProfile] = useState<DevLinkProfileType>(
+    () => {
+      if (typeof window !== "undefined") {
+        const storedState = window.localStorage.getItem("devLinkProfile");
+        return storedState
+          ? JSON.parse(storedState)
+          : devLinkProfileInitialState;
+      } else {
+        return devLinkProfileInitialState;
+      }
+    }
   );
   // const [devLinkProfile, dispatch] = useReducer(
   //   linkCreatorReducer,
@@ -54,7 +63,7 @@ export const LinkCreatorProvider = ({ children }: PropsWithChildren) => {
     if (storedState) {
       setDevLinkProfile(JSON.parse(storedState));
     }
-  }, [devLinkProfile]);
+  }, []);
 
   useEffect(() => {
     if (typeof window !== undefined) {
