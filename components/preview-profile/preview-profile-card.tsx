@@ -1,4 +1,5 @@
 "use client";
+import { cn } from "@/lib/utils";
 import { DevLinkProfileType } from "@/types/devlinks";
 import ProfileCard from "../profile-card/profile-card";
 
@@ -34,10 +35,19 @@ const exampleProfile: DevLinkProfileType = {
     },
   ],
 };
-const PreviewProfileCard = () => {
+
+interface IPreviewProfileCardProps {
+  className?: string;
+}
+const PreviewProfileCard = ({ className }: IPreviewProfileCardProps) => {
   return (
     <div className="w-full h-full container flex justify-center items-center">
-      <div className="w-[400px]  bg-white rounded-2xl shadow-[rgba(0,_0,_0,_0.25)_0px_25px_50px_-12px] min-h-[calc(100vh-180px)] mt-8 mobile-sm:w-full">
+      <div
+        className={cn(
+          "w-[400px]  bg-white rounded-2xl shadow-[rgba(0,_0,_0,_0.25)_0px_25px_50px_-12px] min-h-[calc(100vh-180px)] mt-8 mobile-sm:w-full",
+          className
+        )}
+      >
         <ProfileCard profile={exampleProfile}>
           <ProfileCard.Detail>
             <ProfileCard.Image />
