@@ -8,7 +8,7 @@ const DeveloperProfilePreview = () => {
       <PreviewProfileNavbar />
       <PreviewProfileCover />
 
-      <PreviewProfileCard />
+      <PreviewProfileCard className="px-4" />
     </main>
   );
 };

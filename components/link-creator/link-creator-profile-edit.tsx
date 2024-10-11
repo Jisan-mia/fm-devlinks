@@ -98,6 +98,7 @@ const LinkCreatorProfileEdit = () => {
               </span>
               <input
                 onChange={(e) => handleInputChange(e)}
+                value={devLinkProfile.first_name}
                 required
                 type="text"
                 id="first_name"
@@ -116,6 +117,7 @@ const LinkCreatorProfileEdit = () => {
               </span>
               <input
                 onChange={(e) => handleInputChange(e)}
+                value={devLinkProfile.last_name}
                 required
                 type="text"
                 id="last_name"
@@ -134,6 +136,7 @@ const LinkCreatorProfileEdit = () => {
               </span>
               <input
                 onChange={(e) => handleInputChange(e)}
+                value={devLinkProfile.email}
                 required
                 type="email"
                 id="email"

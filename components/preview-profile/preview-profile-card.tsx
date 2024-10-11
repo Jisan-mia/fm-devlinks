@@ -1,4 +1,5 @@
 "use client";
+import { useLinkCreatorContext } from "@/context/link-creator-context";
 import { cn } from "@/lib/utils";
 import { DevLinkProfileType } from "@/types/devlinks";
 import ProfileCard from "../profile-card/profile-card";
@@ -40,6 +41,7 @@ interface IPreviewProfileCardProps {
   className?: string;
 }
 const PreviewProfileCard = ({ className }: IPreviewProfileCardProps) => {
+  const { devLinkProfile } = useLinkCreatorContext();
   return (
     <div className="w-full h-full container flex justify-center items-center">
       <div
@@ -48,7 +50,7 @@ const PreviewProfileCard = ({ className }: IPreviewProfileCardProps) => {
           className
         )}
       >
-        <ProfileCard profile={exampleProfile}>
+        <ProfileCard profile={devLinkProfile}>
           <ProfileCard.Detail>
             <ProfileCard.Image />
             <ProfileCard.Info />
