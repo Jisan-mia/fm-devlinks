@@ -3,6 +3,11 @@ import Image from "next/image";
 
 const ProfileCardImage = () => {
   const { profile } = useProfileCardContext();
+  const addImageFallback = (
+    event: React.SyntheticEvent<HTMLImageElement, Event>
+  ) => {
+    event.currentTarget.src = "/logomain.png";
+  };
   return (
     <div className="flex justify-center">
       {profile?.profile_picture ? (
@@ -13,6 +18,7 @@ const ProfileCardImage = () => {
             alt="Profile Picture"
             className="w-full h-full object-cover rounded-full shadow-sm"
             unoptimized
+            onError={(e) => addImageFallback(e)}
           />
         </div>
       ) : (

@@ -12,7 +12,7 @@ const navItems: NavItemType[] = [
     query: {
       tab: "profile-edit",
     },
-    link: "",
+    link: "/profile",
     icon: CircleUserRound,
   },
   {
@@ -20,13 +20,15 @@ const navItems: NavItemType[] = [
     query: {
       tab: "link-edit",
     },
-    link: "",
+    link: "/profile",
     icon: LinkIcon,
   },
   {
     label: "More Profile",
     link: "/more-profiles",
-    query: {},
+    query: {
+      tab: "more-profiles",
+    },
     icon: Users,
   },
 ];

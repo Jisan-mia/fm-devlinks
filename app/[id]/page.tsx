@@ -1,12 +1,18 @@
-import PreviewProfileCard from "@/components/preview-profile/preview-profile-card";
+import { promises as fs } from "fs";
+
+import IndividualProfile from "@/components/preview-profile/individual-profile";
 import PreviewProfileCover from "@/components/preview-profile/preview-profile-cover";
 
-const DevLinkIndividualProfile = () => {
+const DevLinkIndividualProfile = async () => {
+  const file = await fs.readFile(process.cwd() + "/app/data.json", "utf8");
+  const data = JSON.parse(file);
+  const firstProfile = data[0];
+  console.log(firstProfile);
   return (
     <main className="relative">
       <PreviewProfileCover />
 
-      <PreviewProfileCard className="mt-20" />
+      <IndividualProfile profileData={firstProfile} />
     </main>
   );
 };

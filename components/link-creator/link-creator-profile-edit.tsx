@@ -28,8 +28,15 @@ const LinkCreatorProfileEdit = () => {
     return;
   };
 
+  const addImageFallback = () => {
+    setDevLinkProfile({
+      ...devLinkProfile,
+      profile_picture: "",
+    });
+  };
+
   return (
-    <div className="px-5 py-5 flex flex-col gap-4">
+    <div className="px-5 py-5 flex flex-col gap-4 h-full custom-scrollbar overflow-y-auto max-h-[calc(100vh-122px)] mobile-md:max-h-full pb-[75px] ">
       <div className="flex flex-col gap-2">
         <h1 className="text-xl font-semibold">Profile Details</h1>
         <p className="text-foreground/75 text-base font-medium">
@@ -69,6 +76,7 @@ const LinkCreatorProfileEdit = () => {
                       width={176}
                       height={176}
                       className="w-full h-full object-cover absolute left-0 top-0"
+                      onError={addImageFallback}
                     />
                   )}
                   <div className="flex flex-col gap-1.5 items-center z-20">
@@ -147,7 +155,7 @@ const LinkCreatorProfileEdit = () => {
           </div>
         </div>
 
-        <div className="flex justify-end mt-4 border-t border-border pt-4 mobile-md:hidden">
+        <div className="flex justify-end mt-4 border-t border-border pt-4 absolute pb-4 right-0 left-0 bottom-0 bg-white pr-8 mobile-md:hidden ">
           <input
             value={"Submit"}
             type="submit"
@@ -155,7 +163,7 @@ const LinkCreatorProfileEdit = () => {
           />
         </div>
 
-        <div className="hidden container mobile-md:flex fixed bottom-[44px] left-0 w-full bg-white items-center justify-around z-50 pr-4 mt-4 border-t border-border pt-4 pb-4 right-0">
+        <div className="hidden container mobile-md:flex fixed mobile-md:bottom-[44px] mobile-sm:bottom-[64px]  left-0 w-full bg-white items-center justify-around z-50 pr-4 mt-4 border-t border-border pt-4 pb-4 right-0">
           <input
             value={"Submit"}
             type="submit"

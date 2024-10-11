@@ -1,6 +1,12 @@
 "use client";
 import { DevLinkProfileType } from "@/types/devlinks";
-import { createContext, PropsWithChildren, useContext, useState } from "react";
+import {
+  createContext,
+  PropsWithChildren,
+  useContext,
+  useEffect,
+  useState,
+} from "react";
 
 type LinkCreatorContextType = {
   devLinkProfile: DevLinkProfileType;
@@ -27,14 +33,21 @@ export const useLinkCreatorContext = () => {
   return context;
 };
 
+function getInitialStoredState() {
+  const profiles = localStorage.getItem("devLinkProfile");
+  return profiles ? JSON.parse(profiles) : devLinkProfileInitialState;
+}
+
 export const LinkCreatorProvider = ({ children }: PropsWithChildren) => {
-  const [devLinkProfile, setDevLinkProfile] = useState(
-    devLinkProfileInitialState
-  );
+  const [devLinkProfile, setDevLinkProfile] = useState(getInitialStoredState);
   // const [devLinkProfile, dispatch] = useReducer(
   //   linkCreatorReducer,
   //   devLinkProfileInitialState
   // );
+
+  useEffect(() => {
+    localStorage.setItem("devLinkProfile", JSON.stringify(devLinkProfile));
+  }, [devLinkProfile]);
 
   return (
     <LinkCreatorContext.Provider value={{ devLinkProfile, setDevLinkProfile }}>

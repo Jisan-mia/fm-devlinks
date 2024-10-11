@@ -34,7 +34,7 @@ const LinkCreatorLinkEdit = () => {
     });
   };
   return (
-    <div className="px-5 py-5 flex flex-col gap-4 h-full custom-scrollbar overflow-y-auto max-h-[calc(100vh-122px)] mobile-md:max-h-full">
+    <div className="px-5 py-5 flex flex-col gap-4 h-full custom-scrollbar overflow-y-auto max-h-[calc(100vh-122px)] mobile-md:max-h-full pb-[75px]">
       <div className="flex flex-col gap-2">
         <h1 className="text-xl font-semibold">Customize your links</h1>
         <p className="text-foreground/75 text-base font-medium">
@@ -56,7 +56,7 @@ const LinkCreatorLinkEdit = () => {
       <LinkInputs />
 
       <LinkCreatorSaveButton className="mobile-md:hidden" />
-      <LinkCreatorSaveButton className="hidden container mobile-md:flex fixed bottom-[44px] left-0 w-full bg-white items-center justify-around z-50 pr-4" />
+      <LinkCreatorSaveButton className="hidden container mobile-md:flex fixed left-0 w-full bg-white items-center justify-around z-50 pr-4 bottom-[64px] mobile-md:bottom-[44px]" />
     </div>
   );
 };
