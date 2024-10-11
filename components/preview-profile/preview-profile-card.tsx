@@ -26,7 +26,7 @@ export const exampleProfile: DevLinkProfileType = {
       platform_logo: "https://cdn.simpleicons.org/linkedin/FFFFFF",
     },
     {
-      platform: "twitter",
+      platform: "Twitter",
       link: "https://x.com/jisanmia47",
       order: 3,
       id: 3,

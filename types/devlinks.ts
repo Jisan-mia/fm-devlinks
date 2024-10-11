@@ -1,10 +1,12 @@
+export type PlatformNameType = "Github" | "Linkedin" | "Twitter" | "Youtube";
+
 export type LinkItemType = {
-  platform: string;
+  platform: PlatformNameType;
   link: string;
   order: number;
   id: number;
-  platform_color?: string;
-  platform_logo?: string;
+  platform_color: string;
+  platform_logo: string;
 };
 
 export type DevLinkProfileType = {

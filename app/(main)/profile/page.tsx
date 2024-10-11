@@ -17,7 +17,7 @@ const DeveloperLinksProfile = ({
         <LinkCreatorPreview />
       </section>
 
-      <section className="main-layout__right-editor bg-background rounded-xl h-full w-full">
+      <section className="main-layout__right-editor relative bg-background rounded-xl h-full w-full">
         {searchParams?.tab === "profile-edit" ? (
           <LinkCreatorProfileEdit />
         ) : (

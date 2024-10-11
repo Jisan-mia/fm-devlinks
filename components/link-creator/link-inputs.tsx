@@ -1,7 +1,8 @@
 "use client";
+import { useLinkCreatorContext } from "@/context/link-creator-context";
 /* eslint-disable @next/next/no-img-element */
-import { LinkItemType } from "@/types/devlinks";
-import { PropsWithChildren } from "react";
+import { LinkItemType, PlatformNameType } from "@/types/devlinks";
+import { PropsWithChildren, useState } from "react";
 
 import Select, {
   components,
@@ -12,30 +13,35 @@ import Select, {
 
 export type PlatformSelectOptionType = {
   value: string;
-  label: string;
+  label: PlatformNameType;
   icon: string;
+  platform_color: string;
 };
 
-const allPlatformOptions: PlatformSelectOptionType[] = [
+export const allPlatformOptions: PlatformSelectOptionType[] = [
   {
     value: "github",
     label: "Github",
-    icon: "https://cdn.simpleicons.org/github/707070",
+    icon: "https://cdn.simpleicons.org/github/FFFFFF",
+    platform_color: "#181717",
   },
   {
     value: "linkedin",
     label: "Linkedin",
-    icon: "https://cdn.simpleicons.org/linkedin/707070",
+    icon: "https://cdn.simpleicons.org/linkedin/FFFFFF",
+    platform_color: "#0A66C2",
   },
   {
     value: "youtube",
     label: "Youtube",
-    icon: "https://cdn.simpleicons.org/youtube/707070",
+    icon: "https://cdn.simpleicons.org/youtube/FFFFFF",
+    platform_color: "#ee3838",
   },
   {
     value: "twitter",
     label: "Twitter",
-    icon: "https://cdn.simpleicons.org/x/707070",
+    icon: "https://cdn.simpleicons.org/x/FFFFFF",
+    platform_color: "#000000",
   },
 ];
 
@@ -48,7 +54,7 @@ const CustomSelectOption = (
     >
 ) => {
   let { icon } = props.data;
-  icon = props.isSelected ? icon.replace("707070", "FFFFFF") : icon;
+  icon = props.isSelected ? icon : icon.replace("FFFFFF", "777777");
   return (
     <components.Option {...props}>
       <div className="flex items-center gap-2">
@@ -70,29 +76,75 @@ const CustomSelectValue = (
 ) => {
   return (
     <components.SingleValue {...props}>
-      <img src={props.data.icon} className="h-5 w-5 mr-2" alt="Platform logo" />
+      <img
+        src={props.data.icon.replace("FFFFFF", "777777")}
+        className="h-5 w-5 mr-2"
+        alt="Platform logo"
+      />
       {props.children}
     </components.SingleValue>
   );
 };
-const allLinks: LinkItemType[] = [];
 
 const LinkInputs = () => {
+  const { devLinkProfile } = useLinkCreatorContext();
+
   return (
-    <div className="flex flex-col gap-3.5">
-      <LinkInputItem />
-      <LinkInputItem />
+    <div className="flex flex-col gap-3.5 pb-[70px]">
+      {devLinkProfile?.links?.length > 0 ? (
+        devLinkProfile.links.map((link) => (
+          <LinkInputItem key={link.id} link={link} />
+        ))
+      ) : (
+        <p>No link added</p>
+      )}
     </div>
   );
 };
 
 export default LinkInputs;
 
-const LinkInputItem = () => {
+const LinkInputItem = ({ link }: { link: LinkItemType }) => {
+  const { devLinkProfile, setDevLinkProfile } = useLinkCreatorContext();
+
+  const [selectedVal, setSelectedVal] = useState<PlatformSelectOptionType>({
+    value: link.platform.toLowerCase(),
+    label: link.platform,
+    icon: link.platform_logo,
+    platform_color: link.platform_color,
+  });
+  const handleChange = (value: PlatformSelectOptionType) => {
+    setSelectedVal(value);
+
+    const linkItem: LinkItemType = {
+      platform: value.label,
+      link: "",
+      order: link.order,
+      id: link.id,
+      platform_color: value.platform_color,
+      platform_logo: value.icon,
+    };
+
+    setDevLinkProfile({
+      ...devLinkProfile,
+      links: devLinkProfile.links.map((item) =>
+        item.id === link.id ? linkItem : item
+      ),
+    });
+  };
+
+  const filterOnlyUnUsedPlatform = (platformItem: PlatformSelectOptionType) => {
+    return devLinkProfile.links.some(
+      (item) => item.platform === platformItem.label
+    );
+  };
+
   return (
     <div className="bg-[#FAFAFA] px-4 py-4 rounded-lg flex flex-col gap-2.5">
       <div className="flex items-center justify-between">
-        <h3 className="font-semibold text-base text-foreground/70">Link #1</h3>
+        <h3 className="font-semibold text-base text-foreground/70">
+          Link #{link.order}
+        </h3>
         <button className="font-medium text-base text-foreground/80">
           Remove
         </button>
@@ -105,7 +157,13 @@ const LinkInputItem = () => {
           Platform
         </label>
         <Select
+          value={selectedVal}
+          // onChange={handleChange}
+          onChange={(newVal) =>
+            handleChange(newVal as PlatformSelectOptionType)
+          }
           options={allPlatformOptions}
+          isOptionDisabled={(option) => filterOnlyUnUsedPlatform(option)}
           id="platform"
           isSearchable={false}
           styles={{
