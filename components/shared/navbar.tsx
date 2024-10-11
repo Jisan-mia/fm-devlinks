@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { Suspense } from "react";
 import LogoSvg from "./logo";
 import NavbarMenuItems from "./navbar-menu-items";
 import NavbarPreviewButton from "./navbar-preview-btn";
@@ -16,13 +17,16 @@ const Navbar = () => {
                 </Link>
               </div>
             </div>
-            <NavbarMenuItems className="mobile-md:hidden" />
+            <Suspense>
+              <NavbarMenuItems className="mobile-md:hidden" />
+            </Suspense>
             <NavbarPreviewButton />
           </div>
         </nav>
       </header>
-
-      <NavbarMenuItems className="hidden container mobile-md:flex fixed bottom-0 left-0 w-full  bg-white items-center justify-around z-50" />
+      <Suspense>
+        <NavbarMenuItems className="hidden container mobile-md:flex fixed bottom-0 left-0 w-full  bg-white items-center justify-around z-50" />
+      </Suspense>
     </>
   );
 };

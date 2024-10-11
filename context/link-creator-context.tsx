@@ -33,22 +33,36 @@ export const useLinkCreatorContext = () => {
   return context;
 };
 
-function getInitialStoredState() {
-  if (window?.localStorage !== undefined) {
-    const profiles = localStorage.getItem("devLinkProfile");
-    return profiles ? JSON.parse(profiles) : devLinkProfileInitialState;
-  }
-}
+// function getInitialStoredState() {
+//   if (typeof window !== undefined) {
+//     const profiles = window.localStorage.getItem("devLinkProfile");
+//     return profiles ? JSON.parse(profiles) : devLinkProfileInitialState;
+//   }
+// }
 
 export const LinkCreatorProvider = ({ children }: PropsWithChildren) => {
-  const [devLinkProfile, setDevLinkProfile] = useState(getInitialStoredState);
+  const [devLinkProfile, setDevLinkProfile] = useState(
+    devLinkProfileInitialState
+  );
   // const [devLinkProfile, dispatch] = useReducer(
   //   linkCreatorReducer,
   //   devLinkProfileInitialState
   // );
 
   useEffect(() => {
-    localStorage.setItem("devLinkProfile", JSON.stringify(devLinkProfile));
+    const storedState = window.localStorage.getItem("devLinkProfile");
+    if (storedState) {
+      setDevLinkProfile(JSON.parse(storedState));
+    }
+  }, [devLinkProfile]);
+
+  useEffect(() => {
+    if (typeof window !== undefined) {
+      window.localStorage.setItem(
+        "devLinkProfile",
+        JSON.stringify(devLinkProfile)
+      );
+    }
   }, [devLinkProfile]);
 
   return (
