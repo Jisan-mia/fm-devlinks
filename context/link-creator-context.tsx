@@ -34,8 +34,10 @@ export const useLinkCreatorContext = () => {
 };
 
 function getInitialStoredState() {
-  const profiles = localStorage.getItem("devLinkProfile");
-  return profiles ? JSON.parse(profiles) : devLinkProfileInitialState;
+  if (window?.localStorage !== undefined) {
+    const profiles = localStorage.getItem("devLinkProfile");
+    return profiles ? JSON.parse(profiles) : devLinkProfileInitialState;
+  }
 }
 
 export const LinkCreatorProvider = ({ children }: PropsWithChildren) => {
