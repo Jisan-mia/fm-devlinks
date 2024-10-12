@@ -89,11 +89,11 @@ To run the project, execute the following command:
 ## 📌 Project Roadmap
 
 - [x] **`Task 1`**: <strike>Navbar design</strike>
-- [x] **`Task 1`**: <strike>Profile detail edit</strike>
-- [x] **`Task 2`**: <strike>Links add/delete</strike>
-- [x] **`Task 3`**: <strike>Responsive design</strike>
-- [x] **`Task 3`**: Drag and drop reorder links
-- [x] **`Task 3`**: Add full stack capabilities
+- [x] **`Task 2`**: <strike>Profile detail edit</strike>
+- [x] **`Task 3`**: <strike>Links add/delete</strike>
+- [x] **`Task 4`**: <strike>Responsive design</strike>
+- [ ] **`Task 5`**: Drag and drop reorder links
+- [ ] **`Task 6`**: Add full stack capabilities
 
 ---
 
