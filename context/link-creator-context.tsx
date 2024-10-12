@@ -1,12 +1,8 @@
 "use client";
 import { DevLinkProfileType } from "@/types/devlinks";
-import {
-  createContext,
-  PropsWithChildren,
-  useContext,
-  useEffect,
-  useState,
-} from "react";
+import { createContext, PropsWithChildren, useContext } from "react";
+
+import { useLocalStorage } from "usehooks-ts";
 
 type LinkCreatorContextType = {
   devLinkProfile: DevLinkProfileType;
@@ -33,46 +29,19 @@ export const useLinkCreatorContext = () => {
   return context;
 };
 
-// function getInitialStoredState() {
-//   if (typeof window !== undefined) {
-//     const profiles = window.localStorage.getItem("devLinkProfile");
-//     return profiles ? JSON.parse(profiles) : devLinkProfileInitialState;
-//   }
-// }
-
 export const LinkCreatorProvider = ({ children }: PropsWithChildren) => {
-  const [devLinkProfile, setDevLinkProfile] = useState<DevLinkProfileType>(
-    () => {
-      if (typeof window !== "undefined") {
-        const storedState = window.localStorage.getItem("devLinkProfile");
-        return storedState
-          ? JSON.parse(storedState)
-          : devLinkProfileInitialState;
-      } else {
-        return devLinkProfileInitialState;
-      }
+  const [devLinkProfile, setDevLinkProfile] = useLocalStorage(
+    "devLinkProfile",
+    devLinkProfileInitialState,
+    {
+      initializeWithValue: false,
     }
   );
+
   // const [devLinkProfile, dispatch] = useReducer(
   //   linkCreatorReducer,
   //   devLinkProfileInitialState
   // );
-
-  useEffect(() => {
-    const storedState = window.localStorage.getItem("devLinkProfile");
-    if (storedState) {
-      setDevLinkProfile(JSON.parse(storedState));
-    }
-  }, []);
-
-  useEffect(() => {
-    if (typeof window !== undefined) {
-      window.localStorage.setItem(
-        "devLinkProfile",
-        JSON.stringify(devLinkProfile)
-      );
-    }
-  }, [devLinkProfile]);
 
   return (
     <LinkCreatorContext.Provider value={{ devLinkProfile, setDevLinkProfile }}>
