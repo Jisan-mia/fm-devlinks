@@ -33,6 +33,13 @@ const LinkCreatorLinkEdit = () => {
       links: [...devLinkProfile.links, linkItem],
     });
   };
+
+  const handleSaveLinks = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    alert("Links saved successfully");
+    console.log("saved");
+  };
   return (
     <div className="px-5 py-5 flex flex-col gap-4 h-full custom-scrollbar overflow-y-auto max-h-[calc(100vh-122px)] mobile-md:max-h-full pb-[75px]">
       <div className="flex flex-col gap-2">
@@ -53,10 +60,15 @@ const LinkCreatorLinkEdit = () => {
         </button>
       </div>
 
-      <LinkInputs />
+      <form
+        className="flex flex-col gap-4"
+        onSubmit={(e) => handleSaveLinks(e)}
+      >
+        <LinkInputs />
 
-      <LinkCreatorSaveButton className="mobile-md:hidden" />
-      <LinkCreatorSaveButton className="hidden container mobile-md:flex fixed left-0 w-full bg-white items-center justify-around z-50 pr-4 bottom-[64px] mobile-md:bottom-[44px]" />
+        <LinkCreatorSaveButton className="mobile-md:hidden" />
+        <LinkCreatorSaveButton className="hidden container mobile-md:flex fixed left-0 w-full bg-white items-center justify-around z-50 pr-4 bottom-[64px] mobile-md:bottom-[44px]" />
+      </form>
     </div>
   );
 };
@@ -66,20 +78,19 @@ export default LinkCreatorLinkEdit;
 const LinkCreatorSaveButton = ({ className }: { className?: string }) => {
   const { devLinkProfile } = useLinkCreatorContext();
 
-  const handleSaveLinks = () => {
-    console.log("saved");
-  };
   return (
     <>
       {devLinkProfile?.links?.length > 0 && (
         <div
-          onClick={handleSaveLinks}
           className={cn(
             "flex justify-end mt-4 border-t border-border pt-4 absolute pb-4 right-0 left-0 bottom-0 bg-white pr-8",
             className
           )}
         >
-          <button className="inline-flex items-center justify-center w-full px-7 py-3 font-semibold leading-6 text-primary-foreground bg-primary border border-transparent rounded-lg md:w-auto hover:bg-primary/90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary cursor-pointer text-sm">
+          <button
+            type="submit"
+            className="inline-flex items-center justify-center w-full px-7 py-3 font-semibold leading-6 text-primary-foreground bg-primary border border-transparent rounded-lg md:w-auto hover:bg-primary/90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary cursor-pointer text-sm"
+          >
             Save
           </button>
         </div>

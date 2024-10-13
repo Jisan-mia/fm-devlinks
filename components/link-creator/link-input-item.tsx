@@ -137,7 +137,7 @@ const LinkInputItem = ({ link }: { link: LinkItemType }) => {
       <div className="flex flex-col gap-1">
         <label
           className="font-medium text-sm text-foreground/80"
-          htmlFor="platform"
+          htmlFor={`platform-${link.platform}`}
         >
           Platform
         </label>
@@ -149,7 +149,7 @@ const LinkInputItem = ({ link }: { link: LinkItemType }) => {
           }
           options={allPlatformOptions}
           isOptionDisabled={(option) => filterOnlyUnUsedPlatform(option)}
-          id="platform"
+          id={`platform-${link.platform}`}
           isSearchable={false}
           styles={{
             singleValue: (base) => ({
