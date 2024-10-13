@@ -1,9 +1,11 @@
 import { useLinkCreatorContext } from "@/context/link-creator-context";
 import { ImageIcon } from "lucide-react";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 import { ChangeEvent, FormEvent } from "react";
 
 const LinkCreatorProfileEdit = () => {
+  const router = useRouter();
   const { devLinkProfile, setDevLinkProfile } = useLinkCreatorContext();
   // const [img, setImg] = useState<string | StaticImport>("");
   const handleImageChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -22,9 +24,30 @@ const LinkCreatorProfileEdit = () => {
     });
   };
 
+  const isValidForm = () => {
+    let isValid = true;
+    if (!devLinkProfile.first_name) {
+      alert("First name cannot be empty");
+      isValid = false;
+    } else if (!devLinkProfile.last_name) {
+      alert("Last name cannot be empty");
+      isValid = false;
+    } else if (!devLinkProfile.email) {
+      alert("Email cannot be empty");
+      isValid = false;
+    }
+    return isValid;
+  };
+
   const handleSaveProfileDetail = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+
+    if (!isValidForm()) {
+      return;
+    }
     // perform form validation and request(post) to an api
+    alert("Profile details saved successfully");
+    router.push("/profile?tab=link-edit");
     return;
   };
 
@@ -157,7 +180,7 @@ const LinkCreatorProfileEdit = () => {
 
         <div className="flex justify-end mt-4 border-t border-border pt-4 absolute pb-4 right-0 left-0 bottom-0 bg-white pr-8 mobile-md:hidden ">
           <input
-            value={"Submit"}
+            value={"Save"}
             type="submit"
             className="inline-flex items-center justify-center w-full px-7 py-3 font-semibold leading-6 text-primary-foreground bg-primary border border-transparent rounded-lg md:w-auto hover:bg-primary/90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary cursor-pointer text-sm"
           />
@@ -165,7 +188,7 @@ const LinkCreatorProfileEdit = () => {
 
         <div className="hidden container mobile-md:flex fixed mobile-md:bottom-[44px] mobile-sm:bottom-[64px]  left-0 w-full bg-white items-center justify-around z-50 pr-4 mt-4 border-t border-border pt-4 pb-4 right-0">
           <input
-            value={"Submit"}
+            value={"Save"}
             type="submit"
             className="inline-flex items-center justify-center w-full px-7 py-3 font-semibold leading-6 text-primary-foreground bg-primary border border-transparent rounded-lg md:w-auto hover:bg-primary/90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary cursor-pointer text-sm"
           />
