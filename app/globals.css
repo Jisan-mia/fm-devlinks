@@ -41,6 +41,15 @@
     @apply font-poppins;
   }
 
+  *:focus-visible {
+    outline: 2px solid theme('colors.primary.DEFAULT');
+    outline-offset: 2px;
+  }
+
+  /* Hide focus rings for mouse users */
+  *:focus:not(:focus-visible) {
+    outline: none;
+  }
 }
 
 

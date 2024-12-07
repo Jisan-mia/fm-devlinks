@@ -2,12 +2,15 @@ import { useLinkCreatorContext } from "@/context/link-creator-context";
 import { ImageIcon } from "lucide-react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-import { ChangeEvent, FormEvent } from "react";
+import { ChangeEvent, FormEvent, useState } from "react";
 
 const LinkCreatorProfileEdit = () => {
   const router = useRouter();
   const { devLinkProfile, setDevLinkProfile } = useLinkCreatorContext();
   // const [img, setImg] = useState<string | StaticImport>("");
+  const [errors, setErrors] = useState<Record<string, string>>({});
+  const [submitStatus, setSubmitStatus] = useState<string>("");
+
   const handleImageChange = (e: ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files.length > 0) {
       setDevLinkProfile({
@@ -39,16 +42,22 @@ const LinkCreatorProfileEdit = () => {
     return isValid;
   };
 
-  const handleSaveProfileDetail = (e: FormEvent<HTMLFormElement>) => {
+  const handleSaveProfileDetail = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    setErrors({});
 
     if (!isValidForm()) {
       return;
     }
-    // perform form validation and request(post) to an api
-    alert("Profile details saved successfully");
-    router.push("/profile?tab=link-edit");
-    return;
+
+    try {
+      // perform form validation and request(post) to an api
+      setSubmitStatus("Profile details saved successfully");
+      router.push("/profile?tab=link-edit");
+    } catch (e) {
+      console.log(e);
+      setSubmitStatus("Failed to save profile details");
+    }
   };
 
   const addImageFallback = () => {
@@ -59,7 +68,11 @@ const LinkCreatorProfileEdit = () => {
   };
 
   return (
-    <div className="px-5 py-5 flex flex-col gap-4 h-full custom-scrollbar overflow-y-auto max-h-[calc(100vh-122px)] mobile-md:max-h-full pb-[75px] ">
+    <div
+      className="px-5 py-5 flex flex-col gap-4 h-full custom-scrollbar overflow-y-auto max-h-[calc(100vh-122px)] mobile-md:max-h-full pb-[75px]"
+      role="region"
+      aria-label="Profile Editor"
+    >
       <div className="flex flex-col gap-2">
         <h1 className="text-xl font-semibold">Profile Details</h1>
         <p className="text-foreground/75 text-base font-medium">
@@ -70,28 +83,25 @@ const LinkCreatorProfileEdit = () => {
       <form
         className="flex flex-col gap-5"
         onSubmit={(e) => handleSaveProfileDetail(e)}
+        aria-label="Profile Details Form"
       >
         <div className="bg-[#FAFAFA] px-4 py-4 rounded-lg">
           <div className="block">
             <label
               className="flex items-center justify-between gap-1.5 mobile-md:flex-col mobile-md:justify-stretch mobile-md:items-start text-base font-medium"
               htmlFor="profile_picture"
+              id="profile-picture-label"
             >
-              <span className="basis-[40%] after:content-['*'] after:ml-0.5 after:text-red-500">
+              <span className="basis-[40%]">
                 Profile picture
+                <span className="text-red-500" aria-hidden="true">
+                  *
+                </span>
+                <span className="sr-only">(required)</span>
               </span>
 
               <div className="basis-[60%] w-full flex items-center gap-2.5">
                 <div className="h-44 w-44 rounded-lg bg-[#EEEEEE] relative flex items-center justify-center cursor-pointer">
-                  <input
-                    onChange={(e) => handleImageChange(e)}
-                    id="profile_picture"
-                    required
-                    type="file"
-                    accept=".jpg, .jpeg, .png"
-                    className=" inset-0 absolute top-0 left-0 z-30 opacity-0 cursor-pointer"
-                  />
-                  <div className="absolute rounded-lg left-0 top-0 z-10 w-full h-full bg-[#000] bg-opacity-50"></div>
                   {devLinkProfile.profile_picture && (
                     <Image
                       src={devLinkProfile.profile_picture}
@@ -103,12 +113,22 @@ const LinkCreatorProfileEdit = () => {
                     />
                   )}
                   <div className="flex flex-col gap-1.5 items-center z-20">
-                    <ImageIcon className="text-white size-8" />
-                    <span className="text-white">
+                    <ImageIcon className="invert-0 size-8" />
+                    <span className="invert-0">
                       {devLinkProfile.profile_picture ? "Change" : "Upload"}{" "}
                       Image
                     </span>
                   </div>
+                  <input
+                    onChange={(e) => handleImageChange(e)}
+                    id="profile_picture"
+                    required
+                    type="file"
+                    accept=".jpg, .jpeg, .png"
+                    className="inset-0 absolute top-0 left-0 z-30 opacity-0 cursor-pointer"
+                    aria-labelledby="profile-picture-label"
+                    aria-required="true"
+                  />
                 </div>
                 <p className="font-medium text-sm">
                   Use PNG, JPG, or JPEG format
@@ -193,6 +213,18 @@ const LinkCreatorProfileEdit = () => {
             className="inline-flex items-center justify-center w-full px-7 py-3 font-semibold leading-6 text-primary-foreground bg-primary border border-transparent rounded-lg md:w-auto hover:bg-primary/90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary cursor-pointer text-sm"
           />
         </div>
+
+        {submitStatus && (
+          <div role="status" aria-live="polite" className="sr-only">
+            {submitStatus}
+          </div>
+        )}
+
+        {errors.form && (
+          <div role="alert" className="text-red-500">
+            {errors.form}
+          </div>
+        )}
       </form>
     </div>
   );

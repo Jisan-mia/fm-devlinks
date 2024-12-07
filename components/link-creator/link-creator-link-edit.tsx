@@ -41,7 +41,11 @@ const LinkCreatorLinkEdit = () => {
     console.log("saved");
   };
   return (
-    <div className="px-5 py-5 flex flex-col gap-4 h-full custom-scrollbar overflow-y-auto max-h-[calc(100vh-122px)] mobile-md:max-h-full pb-[75px]">
+    <div
+      className="px-5 py-5 flex flex-col gap-4 h-full custom-scrollbar overflow-y-auto max-h-[calc(100vh-122px)] mobile-md:max-h-full pb-[75px]"
+      role="region"
+      aria-label="Link Editor"
+    >
       <div className="flex flex-col gap-2">
         <h1 className="text-xl font-semibold">Customize your links</h1>
         <p className="text-foreground/75 text-base font-medium">
@@ -54,8 +58,10 @@ const LinkCreatorLinkEdit = () => {
         <button
           onClick={handleAddLink}
           className="px-8 py-3 border border-primary text-primary font-semibold text-sm rounded-lg hover:text-primary-foreground hover:bg-primary ring-offset-background focus-within:ring-2 focus-within:ring-primary focus-within:ring-offset-2 transition-all flex items-center text-center gap-1.5 w-full justify-center"
+          aria-label="Add new link"
+          disabled={devLinkProfile.links.length === 4}
         >
-          <PlusIcon className="size-5" />
+          <PlusIcon className="size-5" aria-hidden="true" />
           Add new link
         </button>
       </div>

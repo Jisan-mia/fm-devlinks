@@ -61,7 +61,15 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${poppins.variable} antialiased`}>
-        <LinkCreatorProvider>{children}</LinkCreatorProvider>
+        <a
+          href="#main-content"
+          className="sr-only focus:not-sr-only focus:absolute focus:z-50 focus:p-4 focus:bg-white focus:text-primary"
+        >
+          Skip to main content
+        </a>
+        <LinkCreatorProvider>
+          <main id="main-content">{children}</main>
+        </LinkCreatorProvider>
       </body>
     </html>
   );
